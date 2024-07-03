@@ -12,7 +12,9 @@ import lombok.Setter;
 @Component
 public class CarreraDTO {
 	
+	private String codigo;
 	private String nombre;
 	private Integer duracionCarrera;
+	private String estado;
 
 }

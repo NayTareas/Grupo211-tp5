@@ -2,6 +2,7 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.CarreraService;
+import jakarta.validation.Valid;
 
 @Controller
 public class CarreraController {
@@ -20,7 +22,7 @@ public class CarreraController {
 	@Autowired
 	CarreraService carreraService;
 	
-	@GetMapping("/formularioCarrera")
+	@GetMapping("/formularioCarreraFinal")
 	public ModelAndView getFormCarrera() {
 		//vista formCarrera.html
 		ModelAndView modelView = new ModelAndView("formCarrera");
@@ -32,17 +34,22 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardarCarrera")
-	public ModelAndView saveCarrera(@ModelAttribute("nuevaCarrera") Carrera carreraParaGuardar) {
-					
+	public ModelAndView saveCarrera(@Valid @ModelAttribute("nuevaCarrera") Carrera carreraParaGuardar, BindingResult resultado) {
+		ModelAndView modelView = new ModelAndView("listaDeCarreras");
+		if(resultado.hasErrors()) {
+			modelView.setViewName("formCarrera");
+			
+			}else {
+		
 		//guardar
 		//ListadoCarreras.agregarCarrera(carreraParaGuardar);
 		carreraService.guardarCarrera(carreraParaGuardar);
 		
 		//mostrar el listado
-		ModelAndView modelView = new ModelAndView("listaDeCarreras");
+		modelView.setViewName("listaDeCarreras");
 		//modelView.addObject("listadoCarreras", ListadoCarreras.listarCarreras());	
 		modelView.addObject("listadoCarreras", carreraService.mostrarCarreras());
-		
+			}
 		return modelView;		
 	}
 	
