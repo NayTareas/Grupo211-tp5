@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.DTO.DocenteDTO;
+import ar.edu.unju.fi.map.DocenteMapDTO;
 import ar.edu.unju.fi.model.Docente5;
 import ar.edu.unju.fi.repository.DocenteRepository;
 import ar.edu.unju.fi.service.DocenteService;
@@ -16,11 +18,15 @@ public class DocenteServiceImp implements DocenteService {
 	@Autowired
 	DocenteRepository docenteRepository;
 	
+	@Autowired
+	DocenteMapDTO docenteMapDTO;
+	
 	@Override
-	public void guardarDocente(Docente5 docente) {
+	public void guardarDocente(DocenteDTO docenteDTO) {
 		// TODO Auto-generated method stub
 		//docente.setEstado(true);
-		docenteRepository.save(docente);
+		
+		docenteRepository.save(docenteMapDTO.convertirDocenteDTOADocente(docenteDTO));
 	}
 
 	@Override

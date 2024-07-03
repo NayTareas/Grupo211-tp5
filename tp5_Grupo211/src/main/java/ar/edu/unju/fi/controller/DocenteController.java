@@ -2,21 +2,24 @@ package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.DTO.DocenteDTO;
 import ar.edu.unju.fi.model.Docente5;
 import ar.edu.unju.fi.service.DocenteService;
+import jakarta.validation.Valid;
 
 @Controller 
 
 public class DocenteController {
 		
 		@Autowired
-		Docente5 nuevaDocente;
+		Docente5 nuevaDocenteDTO;
 		
 		@Autowired
 		DocenteService docenteService;
@@ -30,27 +33,33 @@ public class DocenteController {
 		//agrega el objeto
 		//comprobando el lombox
 		//nuevaDocente.setNombre ("Arturo");
-		modelView.addObject("nuevaDocente", nuevaDocente);
+		modelView.addObject("nuevaDocente", nuevaDocenteDTO);
 		modelView.addObject("band", false);
 		return modelView;		
 		}
 
 
 	@PostMapping("/guardarDocente")
-	public ModelAndView saveDocente(@ModelAttribute("nuevaDocente") Docente5 docenteParaGuardar) {
+	public ModelAndView saveDocente( @Valid @ModelAttribute("nuevaDocente") DocenteDTO docenteParaGuardar, BindingResult resultado ) {
 		
-		//Guardar
-		//ListadoDocentes.agregarDocente(docenteParaGuardar);
-		
-		docenteService.guardarDocente(docenteParaGuardar);
-		
-		//Mostrar el listado
 		ModelAndView modelView = new ModelAndView("listaDeDocentes");
+		if(resultado.hasErrors()) {
+			modelView.setViewName("formDocente");
+			//al error vuelvo al formulario de carrera
+			}else {
+		
+				//Guardar
+				//ListadoDocentes.agregarDocente(docenteParaGuardar);
+				docenteService.guardarDocente(docenteParaGuardar);
+				
+				
+				//Mostrar el listado
+				modelView.setViewName("listaDeDocentes");
 		//modelView.addObject("listadoDocentes", ListadoDocentes.listarDocentes());	
-		
 		modelView.addObject("listadoDocentes", docenteService.mostarDocente());
+			}	
 		
-		return modelView;		
+		return modelView;
 	}
 
 	
