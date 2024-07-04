@@ -56,5 +56,17 @@ public class CarreraServiceImp implements CarreraService{
 		return null;
 	}
 
+	@Override
+	public Object getAllCarreras() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Carrera getCarreraByCodigo(Object carreraCodigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

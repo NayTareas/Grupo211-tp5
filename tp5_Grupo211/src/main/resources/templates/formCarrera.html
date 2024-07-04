@@ -41,7 +41,7 @@
 				
 				<div class="mb-e">
 	            <label class="form-label">Materias</label>
-	            <select data-th-field="*{materias}" class="form-control" required multiple><br>
+	            <select data-th-field="*{materias}" class="form-control" required multiple>
 	                <option value="">Seleccionar materia...</option>
 	                <option data-th-each="mat : ${mats}" data-th-value="${mat.codigoMat}" data-th-text="${mat.nombre + ' ' + mat.anio}"></option>
 	            </select>
