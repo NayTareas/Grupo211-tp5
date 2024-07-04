@@ -14,7 +14,7 @@ import ar.edu.unju.fi.model.Docente5;
 
 public interface DocenteMapDTO {
 
-	@Mapping(source="legajo", target="legajo")
+	//@Mapping(source="legajo", target="legajo")
 	@Mapping(source="nombre", target="nombre")
 	@Mapping(source="apellido", target="apellido")	
 	@Mapping(source="estado", target="estado")
