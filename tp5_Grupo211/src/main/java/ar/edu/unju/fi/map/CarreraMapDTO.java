@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.map;
 
+import java.util.List;
+
 import org.mapstruct.InheritInverseConfiguration;
 
 import org.mapstruct.Mapper;
@@ -12,17 +14,20 @@ import ar.edu.unju.fi.model.Carrera;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CarreraMapDTO {
 	
-	@Mapping(source="nombre", target="nombre")
-	@Mapping(source="duracion", target="duracionCarrera")
-	CarreraDTO convertirCarreraACarreraDTO(Carrera c);
-	
+
 	@Mapping(target = "codigo", ignore = true)
 	@Mapping(target = "estado", ignore = true)
-	@InheritInverseConfiguration;
+	@Mapping(target = "nombre")
+	@Mapping(target = "duracionCarrera", ignore = true)
+	
+	CarreraDTO convertirCarreraACarreraDTO(Carrera c);
+	
+	
+	@InheritInverseConfiguration
 	Carrera ConvertirCarreraDTOACarrera (CarreraDTO cdto);
 	
 	List<CarreraDTO> convertirListaCarrerasAListaCarrerasDTO (List<Carrera> ListaC);
-	List<Carrera> convertirListaCarrerasDTOAListaCarreras (List<CarreraDTO>)
+	List<Carrera> convertirListaCarrerasDTOAListaCarreras (List<CarreraDTO> ListaCDTO);
 }
 
 

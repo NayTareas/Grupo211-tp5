@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<title>CONSULTA DE ALUMNOS POR CARRERA</title>
+</head>
+
+<body>
+    <div class="container">
+       <div data-th-replace="~{fragments/fragmentos :: navbar}"></div>
+        
+        <h1 class="my-4">Consulta de Alumnos por Carrera</h1>
+        
+        <form action="/alumnos-por-carrera" method="GET" class="row g-3">
+            <div class="col-md-6">
+                <label for="carrera" class="form-label">Carrera</label>
+                <select name="carreraId" id="carrera" class="form-control" required>
+                    <option value="" disabled selected>Seleccione una carrera</option>
+                    <option data-th-each="carrera : ${carreras}" data-th-value="${carrera.id}" data-th-text="${carrera.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary mt-3">Consultar</button>
+            </div>
+        </form>
+        
+        <div data-th-if="${carrera != null}" class="mt-5">
+            <h2>Alumnos en la Carrera: <span data-th-text="${carrera.nombre}"></span></h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>DNI</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-th-each="alumno : ${alumnos}">
+                        <td data-th-text="${alumno.dni}"></td>
+                        <td data-th-text="${alumno.nombre}"></td>
+                        <td data-th-text="${alumno.email}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div data-th-replace="~{fragments/fragmentos :: footer}"></div>
+    </div>
+
+    <script data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
