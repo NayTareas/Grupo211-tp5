@@ -46,26 +46,28 @@ public class CarreraServiceImp implements CarreraService{
 
 	@Override
 	public void modificarCarrera(Carrera carrera) {
-		// TODO Auto-generated method stub
+		// Modificar una carrera existente
+				carreraRepository.save(carrera);
 		
 	}
 
 	@Override
 	public Carrera buscarCarrera(String codigo) {
-		// TODO Auto-generated method stub
-		return null;
+		// Buscar una carrera por su código
+				return carreraRepository.findById(codigo).orElse(null);
 	}
 
 	@Override
 	public Object getAllCarreras() {
-		// TODO Auto-generated method stub
-		return null;
+		// Obtener todas las carreras
+				return carreraRepository.findAll();
+		
 	}
 
 	@Override
 	public Carrera getCarreraByCodigo(Object carreraCodigo) {
-		// TODO Auto-generated method stub
-		return null;
+		// Obtener una carrera por su código
+		return carreraRepository.findById((String) carreraCodigo).orElse(null);
 	}
 
 	

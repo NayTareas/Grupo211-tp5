@@ -22,8 +22,7 @@ public class ConsultaAlumCarrController {
 
     @GetMapping("/alumnos-por-carrera")
     public String consultarAlumnos(@RequestParam Long carreraId, Model model) {
-        Object carreraCodigo = null;
-		Carrera carrera = carreraService.getCarreraByCodigo(carreraCodigo);
+    	Carrera carrera = carreraService.getCarreraByCodigo(carreraId);
         model.addAttribute("carrera", carrera);
         model.addAttribute("alumnos", carrera.getAlumnos());
         return "lista-alumnos";
