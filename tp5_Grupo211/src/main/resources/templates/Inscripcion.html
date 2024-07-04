@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<title>Inscripción Alumno en Materia</title>
+</head>
+<body>
+    <div class="container">
+       <div data-th-replace="~{fragments/fragmentos :: navbar}"></div>
+        
+        <h1 class="my-4">Inscripción de Alumno en Materia</h1>
+        
+        <form action="/inscripcion-alumno-materia" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label for="alumno" class="form-label">Alumno</label>
+                <select name="alumnoId" id="alumno" class="form-control" required>
+                    <option value="" disabled selected>Seleccione un alumno</option>
+                    <option data-th-each="alumno : ${alumnos}" data-th-value="${alumno.id}" data-th-text="${alumno.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="materia" class="form-label">Materia</label>
+                <select name="materiaId" id="materia" class="form-control" required>
+                    <option value="" disabled selected>Seleccione una materia</option>
+                    <option data-th-each="materia : ${materias}" data-th-value="${materia.id}" data-th-text="${materia.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success mt-3">Inscribir</button>
+            </div>
+        </form>
+        
+        <div data-th-replace="~{fragments/fragmentos :: footer}"></div>
+    </div>
+
+    <script data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

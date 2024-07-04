@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -57,5 +58,5 @@ public class Alumno {
     private Carrera carrera;
 
     @ManyToMany
-    private List<Materia> materias;
+    private List<Materia> materia;
 }
