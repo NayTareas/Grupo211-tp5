@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" data-th-src="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+  <title>Formulario Alumno</title>
+    
+</head>
+<body>
+	<div class="container">
+	<div data-th-replace="~{fragments/fragmentos :: navbar}"></div>
+	<form data-th-object="${c}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarAlumno}" method="post" enctype="multipart/form-data">
+		<div class="row g-3">
+
+		  	<div class="mb-3">
+		    <label for="dni" class="form-label">DNI</label>
+		    <input type="password" class="form-control" id="dni">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="nombre" class="form-label">Nombre</label>
+		    <input type="text" class="form-control" id="nombre">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="apellido" class="form-label">Apellido</label>
+		    <input type="text" class="form-control" id="apellido">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="email" class="form-label">Email</label>
+		    <input type="text" class="form-control" id="email">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="telefono" class="form-label">Telefono</label>
+		    <input type="text" class="form-control" id="telefono>
+		    
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="fechanacimiento" class="form-label">Fecha Nacimiento</label>
+		    <input type="text" class="form-control" id="fechanacimiento">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="domicilio" class="form-label">Domicilio</label>
+		    <input type="text" class="form-control" id="domicilio">
+		  </div>
+		  
+		  <div class="mb-3">
+		    <label for="LU" class="form-label">LU</label>
+		    <input type="password" class="form-control" id="LU">
+		  </div>
+  	
+						
+		</div>
+			<button class="btn btn-success rounded-pill" type="submit">Registrar</button>
+	</form>
+	<div data-th-replace="~{fragments/fragmentos :: footer}"></div>
+	</div>
+
+	<script
+		data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
