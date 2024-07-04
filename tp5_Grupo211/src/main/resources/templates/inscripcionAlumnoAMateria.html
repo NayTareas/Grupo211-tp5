@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción de Alumno en Materia</title>
+</head>
+<body>
+    <h1>Inscripción de Alumno en Materia</h1>
+    <form action="/inscribir" method="POST">
+        <label for="alumno">Alumno:</label>
+        <select name="alumnoId" id="alumno">
+            <th:block th:each="alumno : ${alumnos}">
+                <option th:value="${alumno.id}" th:text="${alumno.nombre} ${alumno.apellido}"></option>
+            </th:block>
+        </select>
+        <br><br>
+        <label for="materia">Materia:</label>
+        <select name="materiaId" id="materia">
+            <th:block th:each="materia : ${materias}">
+                <option th:value="${materia.id}" th:text="${materia.nombre}"></option>
+            </th:block>
+        </select>
+        <br><br>
+        <input type="submit" value="Inscribir">
+    </form>
+</body>
+</html>

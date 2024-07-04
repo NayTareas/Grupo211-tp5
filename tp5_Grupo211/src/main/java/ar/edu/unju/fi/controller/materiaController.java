@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.DTO.MateriaDTO;
-import ar.edu.unju.fi.model.Materia;
 
 import ar.edu.unju.fi.service.materiaService;
 
